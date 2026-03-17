@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LateralQ - Think Beyond Assumptions</title>
+  <meta name="description" content="Choose questions to uncover the truth behind mysterious situations. A lateral thinking puzzle game with intuitive gameplay for iOS.">
+  <meta name="keywords" content="puzzle,lateral thinking,situation puzzle,mystery,riddle,logic,brain teaser,detective,deduction">
+  <meta property="og:title" content="LateralQ - Think Beyond Assumptions">
+  <meta property="og:description" content="Choose questions to uncover the truth behind mysterious situations. A lateral thinking puzzle game with intuitive gameplay.">
+  <meta property="og:type" content="website">
+  <link rel="alternate" hreflang="ja" href="../ja/index.html">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.8;
+      color: #333;
+      background: #fafafa;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #fff;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero .tagline {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+    }
+    .hero .description {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .badge-placeholder {
+      display: inline-block;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Section common */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #1a1a2e;
+    }
+
+    /* How to play */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .step-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: #4f46e5;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #1a1a2e;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .feature {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .feature h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1a1a2e;
+    }
+    .feature p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Recommend */
+    .recommend-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .recommend-list li {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #444;
+    }
+    .recommend-list li::before {
+      content: ">";
+      color: #4f46e5;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 64px 24px;
+      background: #f0f0ff;
+    }
+    .cta h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a2e;
+    }
+    .cta p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .copyright {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .hero .tagline { font-size: 16px; }
+      .features { grid-template-columns: 1fr; }
+      .recommend-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-label">iOS Puzzle Game</p>
+    <h1>LateralQ</h1>
+    <p class="tagline">Think Beyond Assumptions.</p>
+    <p class="description">
+      You're presented with a mysterious situation. Select YES/NO questions
+      to piece together the truth. A lateral thinking puzzle game
+      you can enjoy on your own.
+    </p>
+    <span class="badge-placeholder">Coming Soon on the App Store</span>
+  </section>
+
+  <!-- How to Play -->
+  <section class="section">
+    <h2>How to Play</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose a Puzzle</h3>
+          <p>Pick a puzzle from the list and dive in.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Read the Scenario</h3>
+          <p>A mysterious situation is presented. The truth is still hidden.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Select Questions to Gather Clues</h3>
+          <p>Each question is answered with YES, NO, or Irrelevant. As you progress, new questions unlock to guide your reasoning.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Reach the Truth</h3>
+          <p>Select the right questions to uncover the hidden truth and clear the puzzle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" style="background:#fff; max-width:none; padding-left:0; padding-right:0;">
+    <div style="max-width:720px; margin:0 auto; padding:0 24px;">
+      <h2>Features</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">💡</div>
+          <h3>Progressive Question Unlocking</h3>
+          <p>Start with basic questions. As you gather answers, deeper questions emerge to lead you closer to the truth.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Intuitive Interface</h3>
+          <p>Tap a question, see the answer. Simple gameplay that anyone can pick up instantly.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📋</div>
+          <h3>Answer History</h3>
+          <p>Review your past questions and answers to organize your reasoning and spot patterns.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📥</div>
+          <h3>Additional Puzzles</h3>
+          <p>Download new puzzles for free. Play downloaded puzzles offline, anytime, anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommend -->
+  <section class="section">
+    <h2>Perfect For</h2>
+    <ul class="recommend-list">
+      <li>Mystery and puzzle fans</li>
+      <li>Sharpening logical thinking</li>
+      <li>Quick puzzle sessions on the go</li>
+      <li>Solo lateral thinking puzzles</li>
+      <li>Commute and break time fun</li>
+      <li>Brain training enthusiasts</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to solve the mystery?</h2>
+    <p>Free to download. Additional puzzles also free.</p>
+    <span class="badge-placeholder">Coming Soon on the App Store</span>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <ul class="footer-links">
+      <li><a href="support.html">Support</a></li>
+      <li><a href="privacy_policy.html">Privacy Policy</a></li>
+      <li><a href="terms_of_use.html">Terms of Use</a></li>
+      <li><a href="../ja/index.html">日本語</a></li>
+    </ul>
+    <p class="copyright">&copy; 2026 Kazu Asato</p>
+  </footer>
+
+</body>
+</html>

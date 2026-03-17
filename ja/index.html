@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LateralQ - 質問で謎を解く水平思考パズル</title>
+  <meta name="description" content="質問を選んで、不思議な状況の真相を解き明かそう。水平思考パズル（ウミガメのスープ）を直感的な操作で楽しめるiOSパズルゲーム。">
+  <meta name="keywords" content="パズル,水平思考,ウミガメのスープ,推理,謎解き,論理,思考力,クイズ,なぞなぞ,脳トレ">
+  <meta property="og:title" content="LateralQ - 質問で謎を解く水平思考パズル">
+  <meta property="og:description" content="質問を選んで、不思議な状況の真相を解き明かそう。水平思考パズル（ウミガメのスープ）を直感的な操作で楽しめるパズルゲーム。">
+  <meta property="og:type" content="website">
+  <link rel="alternate" hreflang="en" href="../en/index.html">
+  <link rel="alternate" hreflang="ja" href="index.html">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.8;
+      color: #333;
+      background: #fafafa;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #fff;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero .tagline {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+    }
+    .hero .description {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .app-store-badge {
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .app-store-badge:hover { opacity: 0.85; }
+    .app-store-badge img {
+      height: 54px;
+    }
+    .badge-placeholder {
+      display: inline-block;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Section common */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #1a1a2e;
+    }
+
+    /* How to play */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      counter-reset: step;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .step-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: #4f46e5;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #1a1a2e;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .feature {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .feature h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1a1a2e;
+    }
+    .feature p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Recommend */
+    .recommend-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .recommend-list li {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #444;
+    }
+    .recommend-list li::before {
+      content: ">";
+      color: #4f46e5;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 64px 24px;
+      background: #f0f0ff;
+    }
+    .cta h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a2e;
+    }
+    .cta p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .copyright {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .hero .tagline { font-size: 16px; }
+      .features { grid-template-columns: 1fr; }
+      .recommend-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-label">iOS Puzzle Game</p>
+    <h1>LateralQ</h1>
+    <p class="tagline">質問で謎を解く水平思考パズル</p>
+    <p class="description">
+      不思議な状況が提示され、YES / NO で答えられる質問を選びながら、
+      隠された真相を推理する。「ウミガメのスープ」を一人で楽しめるパズルゲーム。
+    </p>
+    <span class="badge-placeholder">App Store で近日公開</span>
+  </section>
+
+  <!-- How to Play -->
+  <section class="section">
+    <h2>遊び方</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>パズルを選ぶ</h3>
+          <p>一覧から気になるパズルを選んでスタート。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>出題文を読む</h3>
+          <p>不思議な状況が提示されます。真相はまだ隠されています。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>質問を選んで手がかりを集める</h3>
+          <p>YES / NO / 関係ない で返ってくる回答をもとに推理を進めます。質問を重ねるごとに、新たな質問が出現します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>真相にたどり着けばクリア</h3>
+          <p>核心に迫る質問を選べば、隠された真相が明らかに。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" style="background:#fff; max-width:none; padding-left:0; padding-right:0;">
+    <div style="max-width:720px; margin:0 auto; padding:0 24px;">
+      <h2>特徴</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">💡</div>
+          <h3>質問が解放されていく独自のシステム</h3>
+          <p>序盤は基本的な質問から。回答を積み重ねることで核心に迫る質問が出現します。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>直感的な操作</h3>
+          <p>質問をタップして回答を確認。シンプルな操作で誰でもすぐに遊べます。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📋</div>
+          <h3>回答履歴</h3>
+          <p>これまでの質問と回答を振り返って、推理の糸口を整理できます。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📥</div>
+          <h3>追加パズル</h3>
+          <p>新しいパズルを無料でダウンロード。ダウンロード済みのパズルはオフラインでもプレイ可能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommend -->
+  <section class="section">
+    <h2>こんな方におすすめ</h2>
+    <ul class="recommend-list">
+      <li>推理や謎解きが好き</li>
+      <li>論理的思考力を鍛えたい</li>
+      <li>短時間で遊べるパズルを探している</li>
+      <li>ウミガメのスープを一人で楽しみたい</li>
+      <li>通勤や休憩のスキマ時間に</li>
+      <li>脳トレ・頭の体操をしたい</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>さあ、謎を解こう。</h2>
+    <p>無料でダウンロード。追加パズルも無料。</p>
+    <span class="badge-placeholder">App Store で近日公開</span>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <ul class="footer-links">
+      <li><a href="support.html">サポート</a></li>
+      <li><a href="privacy_policy.html">プライバシーポリシー</a></li>
+      <li><a href="terms_of_use.html">利用規約</a></li>
+      <li><a href="../en/index.html">English</a></li>
+    </ul>
+    <p class="copyright">&copy; 2026 Kazu Asato</p>
+  </footer>
+
+</body>
+</html>
